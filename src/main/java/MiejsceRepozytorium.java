@@ -1,13 +1,15 @@
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.NativeQuery;
+import org.hibernate.type.TimestampType;
 
 import java.util.*;
 
 
 public class MiejsceRepozytorium {
 
-    public List<MiejsceEntity> getAll (){
+    public List<MiejsceEntity> getWolne(Date start, Date koniec){
         //Stworzenie obiektu Configuration
         Configuration conf = new Configuration();
 
@@ -28,7 +30,13 @@ public class MiejsceRepozytorium {
         session.beginTransaction();
 
         //Wczytanie wszystkich pracownikow
-        List<MiejsceEntity> resultList = session.createQuery("from MiejsceEntity").getResultList();
+        NativeQuery query = session.createNativeQuery("select * from miejsce where id not in (select miejsce_id from rezerwacja where do > :start and od < :koniec)");
+        query.setParameter("start", start, TimestampType.INSTANCE);
+        query.setParameter("koniec", koniec, TimestampType.INSTANCE);
+        query.addEntity(MiejsceEntity.class);
+        List<MiejsceEntity> resultList = query.getResultList();
+
+        //select * from miejsce where id not in (select miejsce_id from rezerwacja where do > '2022-12-10 10:00:00' and od < '2022-12-10 11:00:00');
 
         //zakonczenie transakcji
         session.getTransaction().commit();
