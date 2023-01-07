@@ -30,7 +30,7 @@ public class MiejsceRepozytorium {
         session.beginTransaction();
 
         //Wczytanie wszystkich pracownikow
-        NativeQuery query = session.createNativeQuery("select * from miejsce where id not in (select miejsce_id from rezerwacja where do > :start and od < :koniec)");
+        NativeQuery query = session.createNativeQuery("select * from miejsce where id not in (select miejsce_id from rezerwacja where do > :start and od < :koniec) limit 1");
         query.setParameter("start", start, TimestampType.INSTANCE);
         query.setParameter("koniec", koniec, TimestampType.INSTANCE);
         query.addEntity(MiejsceEntity.class);
