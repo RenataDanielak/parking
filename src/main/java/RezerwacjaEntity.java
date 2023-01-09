@@ -15,7 +15,7 @@ public class RezerwacjaEntity {
    private Date start;
    @Column(name="do")
    private Date koniec;
-   @ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+   @ManyToOne(fetch = FetchType.EAGER)
    @JoinColumn(name="miejsce_id")
    private MiejsceEntity miejsce;
 

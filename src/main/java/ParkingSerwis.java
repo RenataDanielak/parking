@@ -8,12 +8,12 @@ public class ParkingSerwis {
             if(miejsceEntityList.size()>0){
                 MiejsceEntity miejsce = miejsceEntityList.get(0);
                 RezerwacjaEntity rezerwacja = new RezerwacjaEntity();
+                RezerwacjaRepozytorium rezerwacjaRepozytorium = new RezerwacjaRepozytorium();
                 rezerwacja.setMiejsce(miejsce);
                 rezerwacja.setUzytkownik(imie);
                 rezerwacja.setStart(start);
                 rezerwacja.setKoniec(koniec);
-                miejsce.getRezerwacje().add(rezerwacja);
-                miejsceRepozytorium.mergeMiejsce(miejsce);
+                rezerwacjaRepozytorium.zapisanieDoBazy(rezerwacja);
                 return miejsce.getNumerMiejsca();
 
             }

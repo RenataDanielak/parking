@@ -11,7 +11,7 @@ public class MiejsceEntity {
     private Integer id;
     @Column(name="numer_miejsca")
     private Integer numerMiejsca;
-    @OneToMany(mappedBy = "miejsce", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "miejsce", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<RezerwacjaEntity> rezerwacje;
 
     public Integer getId() {
