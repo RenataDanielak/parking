@@ -4,7 +4,9 @@ import org.hibernate.cfg.Configuration;
 
 public class RezerwacjaRepozytorium {
 
-    public Integer zapisanieDoBazy (RezerwacjaEntity rezerwacja){
+    private SessionFactory factory;
+
+    public RezerwacjaRepozytorium (){
         Configuration conf = new Configuration();
 
         //Wczytanie pliku konfiguracyjnego
@@ -15,7 +17,10 @@ public class RezerwacjaRepozytorium {
         conf.addAnnotatedClass(RezerwacjaEntity.class);
 
         //Stworzenie obiektu SessionFactory
-        SessionFactory factory = conf.buildSessionFactory();
+        factory = conf.buildSessionFactory();
+    }
+
+    public Integer zapisanieDoBazy (RezerwacjaEntity rezerwacja){
 
         //Pobranie sesji
         Session session = factory.getCurrentSession();
@@ -27,9 +32,6 @@ public class RezerwacjaRepozytorium {
 
         //zakonczenie transakcji
         session.getTransaction().commit();
-
-        //Zamkniecie obiektu SessionFactory
-        factory.close();
 
         return rezerwacja.getId();
 

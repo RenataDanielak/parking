@@ -2,13 +2,19 @@ import java.util.*;
 
 public class ParkingSerwis {
 
+    private MiejsceRepozytorium miejsceRepozytorium;
+    private RezerwacjaRepozytorium rezerwacjaRepozytorium;
+
+    public ParkingSerwis(){
+        miejsceRepozytorium = new MiejsceRepozytorium();
+        rezerwacjaRepozytorium = new RezerwacjaRepozytorium();
+    }
+
     public Integer zarezerwujMiejsce (Date start, Date koniec, String imie) {
-        MiejsceRepozytorium miejsceRepozytorium = new MiejsceRepozytorium();
         List<MiejsceEntity> miejsceEntityList = miejsceRepozytorium.getWolne(start, koniec);
             if(miejsceEntityList.size()>0){
                 MiejsceEntity miejsce = miejsceEntityList.get(0);
                 RezerwacjaEntity rezerwacja = new RezerwacjaEntity();
-                RezerwacjaRepozytorium rezerwacjaRepozytorium = new RezerwacjaRepozytorium();
                 rezerwacja.setMiejsce(miejsce);
                 rezerwacja.setUzytkownik(imie);
                 rezerwacja.setStart(start);

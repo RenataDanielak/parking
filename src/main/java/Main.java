@@ -7,17 +7,6 @@ public class Main {
     public static void main(String[] args){
 
         ParkingSerwis parkingSerwis = new ParkingSerwis();
-//        Date startDate = null;
-//        Date koniecDate = null;
-//        try {
-//            startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-01-03 17:15:00");
-//            koniecDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-01-03 19:19:00");
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        Integer wynik = parkingSerwis.zarezerwujMiejsce(startDate, koniecDate, "Michal");
-//        System.out.println(wynik);
 
         Scanner scanner=new Scanner(System.in);
         int wybor = 0;
