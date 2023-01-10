@@ -34,7 +34,22 @@ public class RezerwacjaRepozytorium {
         session.getTransaction().commit();
 
         return rezerwacja.getId();
-
     }
+
+    public Integer usuniecieZBazyDanych (RezerwacjaEntity rezerwacja){
+        //Pobranie sesji
+        Session session = factory.getCurrentSession();
+
+        //rozpoczenie transakcji
+        session.beginTransaction();
+
+        session.delete(rezerwacja);
+
+        //zakonczenie transakcji
+        session.getTransaction().commit();
+
+        return rezerwacja.getId();
+    }
+
 
 }

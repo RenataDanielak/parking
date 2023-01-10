@@ -4,6 +4,13 @@ import java.util.*;
 
 public class Main {
 
+    //jak uzytkownik wybierze opcje numer 2 program zapyta go o imie to nalezy wyszukac wszystkie rezerwacje z przyszlosci i je usunac przy wyszukiwaniu rezerwacji program
+    // powinien ignorowac wielkosc liter
+    //https://www.w3schools.com/sql/func_mysql_lower.asp
+    //Date date = new Date();
+    //main- serwis- repozytorium
+
+
     public static void main(String[] args){
 
         ParkingSerwis parkingSerwis = new ParkingSerwis();
@@ -52,7 +59,17 @@ public class Main {
                     System.out.println("Nie ma juz wolnych miejsc");
                 }
             }
-            else if(wybor == 2 || wybor == 3){
+            else if (wybor==2) {
+                System.out.println("Podaj swoje imie");
+                String imie = scanner.next();
+                List<RezerwacjaEntity> zwolnijMiejsce = parkingSerwis.zwolnioneRezerwacje(imie);
+                if(zwolnijMiejsce.size()>0){
+                    System.out.println("Zwolniono wszystkie miejsca zarezerwowane przez uzytkownika");
+                } else {
+                    System.out.println("Brak rezerwacji do zwolnienia");
+                }
+            }
+            else if(wybor == 3){
                 System.out.println("Funkcja niedostepna");
             }
             if (wybor == 4) {

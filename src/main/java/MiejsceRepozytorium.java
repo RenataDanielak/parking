@@ -4,6 +4,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.type.TimestampType;
 
+import javax.persistence.Query;
 import java.util.*;
 
 
@@ -60,4 +61,22 @@ public class MiejsceRepozytorium {
         //zakonczenie transakcji
         session.getTransaction().commit();
     }
+
+    public List<MiejsceEntity> getAll(){
+
+        //Pobranie sesji
+        Session session = factory.getCurrentSession();
+
+        //rozpoczenie transakcji
+        session.beginTransaction();
+
+        List<MiejsceEntity> resultList = session.createQuery("from MiejsceEntity").getResultList();
+
+        //zakonczenie transakcji
+        session.getTransaction().commit();
+
+        return resultList;
+    }
+
+
 }
