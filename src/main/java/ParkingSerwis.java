@@ -28,22 +28,13 @@ public class ParkingSerwis {
 
     public List<RezerwacjaEntity> zwolnioneRezerwacje (String imie){
         List<RezerwacjaEntity> rezerwacjeDoUsuniecia = new ArrayList<>();
-        List<MiejsceEntity> listaMiejsc = miejsceRepozytorium.getAll();
-        Date date = new Date();
-        for(int i = 0; i<listaMiejsc.size(); i++){
-            List<RezerwacjaEntity> rezerwacja = listaMiejsc.get(i).getRezerwacje();
-            for(int j = 0; j<rezerwacja.size(); j++){
-                String imieUzytkowanika =  rezerwacja.get(j).getUzytkownik();
-                Date startRezerwacji = rezerwacja.get(j).getStart();
-                if(imie.equals(imieUzytkowanika) && startRezerwacji.after(date)){
-                    rezerwacjeDoUsuniecia.add(rezerwacja.get(j));
-                    listaMiejsc.remove(rezerwacja.get(j));
-                    rezerwacjaRepozytorium.usuniecieZBazyDanych(rezerwacja.get(j));
-                }
+        List<RezerwacjaEntity> listaRezerwacji = rezerwacjaRepozytorium.getRezerwacjeZajetePrzezUzytkownika(imie);
+        if(listaRezerwacji.size()>0){
+            for(int i=0; i< listaRezerwacji.size(); i++){
+                rezerwacjeDoUsuniecia.add(listaRezerwacji.get(i));
+                rezerwacjaRepozytorium.usuniecieZBazyDanych(listaRezerwacji.get(i));
             }
         }
         return rezerwacjeDoUsuniecia;
     }
-
-
 }
