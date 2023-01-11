@@ -10,27 +10,11 @@ import java.util.*;
 
 public class MiejsceRepozytorium {
 
-    //Stworzenie obiektu SessionFactory
-    private SessionFactory factory;
-
-    public MiejsceRepozytorium (){
-        //Stworzenie obiektu Configuration
-        Configuration conf = new Configuration();
-
-        //Wczytanie pliku konfiguracyjnego
-        conf.configure("hibernate.cfg.xml");
-
-        //Wczytanie adnotacji
-        conf.addAnnotatedClass(MiejsceEntity.class);
-        conf.addAnnotatedClass(RezerwacjaEntity.class);
-
-        factory  = conf.buildSessionFactory();
-    }
 
     public List<MiejsceEntity> getWolne(Date start, Date koniec){
 
         //Pobranie sesji
-        Session session = factory.getCurrentSession();
+        Session session = DBConnection.getFactory().getCurrentSession();
 
         //rozpoczenie transakcji
         session.beginTransaction();
@@ -51,7 +35,7 @@ public class MiejsceRepozytorium {
     public void mergeMiejsce (MiejsceEntity miejsce){
 
         //Pobranie sesji
-        Session session = factory.getCurrentSession();
+        Session session = DBConnection.getFactory().getCurrentSession();
 
         //rozpoczenie transakcji
         session.beginTransaction();
@@ -65,7 +49,7 @@ public class MiejsceRepozytorium {
     public List<MiejsceEntity> getAll(){
 
         //Pobranie sesji
-        Session session = factory.getCurrentSession();
+        Session session = DBConnection.getFactory().getCurrentSession();
 
         //rozpoczenie transakcji
         session.beginTransaction();

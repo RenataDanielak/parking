@@ -9,26 +9,10 @@ import java.util.List;
 
 public class RezerwacjaRepozytorium {
 
-    private SessionFactory factory;
-
-    public RezerwacjaRepozytorium (){
-        Configuration conf = new Configuration();
-
-        //Wczytanie pliku konfiguracyjnego
-        conf.configure("hibernate.cfg.xml");
-
-        //Wczytanie adnotacji
-        conf.addAnnotatedClass(MiejsceEntity.class);
-        conf.addAnnotatedClass(RezerwacjaEntity.class);
-
-        //Stworzenie obiektu SessionFactory
-        factory = conf.buildSessionFactory();
-    }
-
     public Integer zapisanieDoBazy (RezerwacjaEntity rezerwacja){
 
         //Pobranie sesji
-        Session session = factory.getCurrentSession();
+        Session session = DBConnection.getFactory().getCurrentSession();
 
         //rozpoczenie transakcji
         session.beginTransaction();
@@ -43,7 +27,7 @@ public class RezerwacjaRepozytorium {
 
     public Integer usuniecieZBazyDanych (RezerwacjaEntity rezerwacja){
         //Pobranie sesji
-        Session session = factory.getCurrentSession();
+        Session session = DBConnection.getFactory().getCurrentSession();
 
         //rozpoczenie transakcji
         session.beginTransaction();
@@ -60,7 +44,7 @@ public class RezerwacjaRepozytorium {
         Date date = new Date();
 
         //Pobranie sesji
-        Session session = factory.getCurrentSession();
+        Session session = DBConnection.getFactory().getCurrentSession();
 
         //rozpoczenie transakcji
         session.beginTransaction();
