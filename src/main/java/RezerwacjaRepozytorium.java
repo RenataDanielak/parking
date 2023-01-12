@@ -25,7 +25,7 @@ public class RezerwacjaRepozytorium {
         return rezerwacja.getId();
     }
 
-    public Integer usuniecieZBazyDanych (RezerwacjaEntity rezerwacja){
+    public void usuniecieZBazyDanych (RezerwacjaEntity rezerwacja){
         //Pobranie sesji
         Session session = DBConnection.getFactory().getCurrentSession();
 
@@ -36,11 +36,9 @@ public class RezerwacjaRepozytorium {
 
         //zakonczenie transakcji
         session.getTransaction().commit();
-
-        return rezerwacja.getId();
     }
 
-    public List<RezerwacjaEntity> getRezerwacjeZajetePrzezUzytkownika(String imie){
+    public int usunieteRezerwacje(String imie){
         Date date = new Date();
 
         //Pobranie sesji
@@ -49,16 +47,16 @@ public class RezerwacjaRepozytorium {
         //rozpoczenie transakcji
         session.beginTransaction();
 
-        NativeQuery query = session.createNativeQuery("select * from rezerwacja where uzytkownik = :imie and od > :data");
+        NativeQuery query = session.createNativeQuery("delete from rezerwacja where uzytkownik = :imie and od > :data");
         query.setParameter("data", date, TimestampType.INSTANCE);
         query.setParameter("imie", imie);
         query.addEntity(RezerwacjaEntity.class);
-        List<RezerwacjaEntity> resultList = query.getResultList();
+        int deletedRows = query.executeUpdate();
 
         //zakonczenie transakcji
         session.getTransaction().commit();
 
-        return resultList;
+        return deletedRows;
     }
 
 

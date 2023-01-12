@@ -62,8 +62,8 @@ public class Main {
             else if (wybor==2) {
                 System.out.println("Podaj swoje imie");
                 String imie = scanner.next();
-                List<RezerwacjaEntity> zwolnijMiejsce = parkingSerwis.zwolnioneRezerwacje(imie);
-                if(zwolnijMiejsce.size()>0){
+                boolean zwolnioneRezerwacje = parkingSerwis.zwolnioneRezerwacje(imie);
+                if(zwolnioneRezerwacje){
                     System.out.println("Zwolniono wszystkie miejsca zarezerwowane przez uzytkownika");
                 } else {
                     System.out.println("Brak rezerwacji do zwolnienia");
