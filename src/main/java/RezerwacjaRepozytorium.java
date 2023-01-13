@@ -25,29 +25,30 @@ public class RezerwacjaRepozytorium {
         return rezerwacja.getId();
     }
 
-    public void usuniecieZBazyDanych (RezerwacjaEntity rezerwacja){
-        //Pobranie sesji
-        Session session = DBConnection.getFactory().getCurrentSession();
+//    public void usuniecieZBazyDanych (RezerwacjaEntity rezerwacja){
+//        //Pobranie sesji
+//        Session session = DBConnection.getFactory().getCurrentSession();
+//
+//        //rozpoczenie transakcji
+//        session.beginTransaction();
+//
+//        session.delete(rezerwacja);
+//
+//        //zakonczenie transakcji
+//        session.getTransaction().commit();
+//    }
 
-        //rozpoczenie transakcji
-        session.beginTransaction();
-
-        session.delete(rezerwacja);
-
-        //zakonczenie transakcji
-        session.getTransaction().commit();
-    }
-
-    public int usunieteRezerwacje(String imie){
+    public int usunieteRezerwacje(String imieRezerwujacego){
         Date date = new Date();
 
         //Pobranie sesji
         Session session = DBConnection.getFactory().getCurrentSession();
 
+        String imie = imieRezerwujacego.toLowerCase();
         //rozpoczenie transakcji
         session.beginTransaction();
 
-        NativeQuery query = session.createNativeQuery("delete from rezerwacja where uzytkownik = :imie and od > :data");
+        NativeQuery query = session.createNativeQuery("delete from rezerwacja where LOWER(uzytkownik) = :imie and od > :data");
         query.setParameter("data", date, TimestampType.INSTANCE);
         query.setParameter("imie", imie);
         query.addEntity(RezerwacjaEntity.class);
