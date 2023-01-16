@@ -60,5 +60,25 @@ public class RezerwacjaRepozytorium {
         return deletedRows;
     }
 
+    public List<RezerwacjaEntity> wypiszStatus (Date sprawdzZajetoscOd, Date sprawdzZajetoscDo){
+
+        //Pobranie sesji
+        Session session = DBConnection.getFactory().getCurrentSession();
+
+        //rozpoczenie transakcji
+        session.beginTransaction();
+
+        NativeQuery query = session.createNativeQuery("select * from rezerwacja where od > :sprawdzZajetoscOd and do < :sprawdzZajetoscDo");
+        query.setParameter("sprawdzZajetoscOd", sprawdzZajetoscOd, TimestampType.INSTANCE);
+        query.setParameter("sprawdzZajetoscDo", sprawdzZajetoscDo, TimestampType.INSTANCE);
+        query.addEntity(RezerwacjaEntity.class);
+
+        List<RezerwacjaEntity> resultList = query.getResultList();
+        //zakonczenie transakcji
+        session.getTransaction().commit();
+
+        return resultList;
+    }
+
 
 }
