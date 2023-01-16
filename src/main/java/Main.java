@@ -70,7 +70,30 @@ public class Main {
                 }
             }
             else if(wybor == 3){
-                System.out.println("Funkcja niedostepna");
+                System.out.println("Podaj dzien, ktory chcesz sprawdzic");
+                String dzien = scanner.next();
+                System.out.println("Podaj miesiac, ktory chcesz sprawdzic");
+                String miesiac = scanner.next();
+                Date sprawdzZajetoscParkinguStart = null;
+                Date sparwdzZajetoscParkinguKoniec = null;
+                try {
+                    sprawdzZajetoscParkinguStart = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-"+ miesiac + "-" + dzien + " " + "00:00:00");
+                    sparwdzZajetoscParkinguKoniec = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-" + miesiac + "-" + dzien + " " + "23:59:00");
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    System.out.println("Wprowadzono niepoprawne dane, wprowadz ponownie");
+                    wybor = 1;
+                }
+                List<RezerwacjaEntity> wypiszStatus = parkingSerwis.wypiszStatus(sprawdzZajetoscParkinguStart, sparwdzZajetoscParkinguKoniec);
+                if (wypiszStatus == null) {
+                    System.out.println("Tego dnia nie wykonano jeszcze żanych rezerwacji");
+
+                } else {
+                    System.out.println("Rezerwacje wykonane tego dnia " + wypiszStatus);
+                }
+
+
             }
             if (wybor == 4) {
                 System.out.println("Program zakonczono");

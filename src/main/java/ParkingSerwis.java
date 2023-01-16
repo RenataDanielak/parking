@@ -33,5 +33,20 @@ public class ParkingSerwis {
         }
         return false;
     }
+
+    public List<RezerwacjaEntity> wypiszStatus (Date sprawdzZajetoscOd, Date sprawdzZajetoscDo){
+        List<RezerwacjaEntity> resultList = new ArrayList<>();
+        List<MiejsceEntity> miejscaParkingowe = miejsceRepozytorium.getAll();
+        for(int i = 0; i<miejscaParkingowe.size(); i++){
+            List <RezerwacjaEntity> rezerwacja = miejscaParkingowe.get(i).getRezerwacje();
+            for(int j = 0; j<rezerwacja.size(); j++){
+                Date date = rezerwacja.get(j).getStart();
+                if(date.after(sprawdzZajetoscOd) && date.before(sprawdzZajetoscDo)){
+                    resultList.add(rezerwacja.get(j));
+                }
+            }
+        }
+        return resultList;
+    }
 }
 

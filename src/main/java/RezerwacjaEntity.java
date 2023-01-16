@@ -58,4 +58,14 @@ public class RezerwacjaEntity {
    public void setMiejsce(MiejsceEntity miejsce) {
       this.miejsce = miejsce;
    }
+
+   @Override
+   public String toString() {
+      return "RezerwacjaEntity{" +
+              "uzytkownik='" + uzytkownik + '\'' +
+              ", start=" + start +
+              ", koniec=" + koniec +
+              ", miejsce=" + miejsce +
+              '}';
+   }
 }
