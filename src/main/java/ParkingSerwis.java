@@ -5,9 +5,9 @@ public class ParkingSerwis {
     private MiejsceRepozytorium miejsceRepozytorium;
     private RezerwacjaRepozytorium rezerwacjaRepozytorium;
 
-    public ParkingSerwis() {
-        miejsceRepozytorium = new MiejsceRepozytorium();
-        rezerwacjaRepozytorium = new RezerwacjaRepozytorium();
+    public ParkingSerwis(MiejsceRepozytorium miejsceRepozytorium, RezerwacjaRepozytorium rezerwacjaRepozytorium) {
+        this.miejsceRepozytorium = miejsceRepozytorium;
+        this.rezerwacjaRepozytorium = rezerwacjaRepozytorium;
     }
 
     public Integer zarezerwujMiejsce(Date start, Date koniec, String imie) {

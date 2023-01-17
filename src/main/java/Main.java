@@ -1,3 +1,5 @@
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -13,7 +15,10 @@ public class Main {
 
     public static void main(String[] args){
 
-        ParkingSerwis parkingSerwis = new ParkingSerwis();
+
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+
+        ParkingSerwis parkingSerwis = (ParkingSerwis) context.getBean("parkingSerwis");
 
         Scanner scanner=new Scanner(System.in);
         int wybor = 0;
@@ -133,7 +138,6 @@ public class Main {
 //
 //        List<MiejsceEntity> result2 = miejsceRepozytorium.getAll();
 //        System.out.println(result2);
-
 
 
 
