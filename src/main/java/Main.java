@@ -45,18 +45,17 @@ public class Main {
                 try {
                     poczatekRezerwacji = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-"+ startMiesiac + "-" + startDzien + " " + startGodzina + ":" + startMinuta + ":00");
                     koniecRezerwacji = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-"+ startMiesiac + "-" + startDzien + " " + koniecGodzina + ":" + koniecMinuta + ":00");
+                    Integer numerMiejsca = parkingSerwis.zarezerwujMiejsce(poczatekRezerwacji, koniecRezerwacji, imie);
+                    if (numerMiejsca != null) {
+                        System.out.println("Zarezerwowano miejsce " + numerMiejsca);
 
+                    } else {
+                        System.out.println("Nie ma juz wolnych miejsc");
+                    }
                 } catch (ParseException e) {
                     e.printStackTrace();
                     System.out.println("Wprowadzono niepoprawne dane, wprowadz ponownie");
                     wybor = 1;
-                }
-                Integer numerMiejsca = parkingSerwis.zarezerwujMiejsce(poczatekRezerwacji, koniecRezerwacji, imie);
-                if (numerMiejsca != null) {
-                    System.out.println("Zarezerwowano miejsce " + numerMiejsca);
-
-                } else {
-                    System.out.println("Nie ma juz wolnych miejsc");
                 }
             }
             else if (wybor==2) {
@@ -74,26 +73,25 @@ public class Main {
                 String dzien = scanner.next();
                 System.out.println("Podaj miesiac, ktory chcesz sprawdzic");
                 String miesiac = scanner.next();
-                Date sprawdzZajetoscParkinguStart = null;
-                Date sparwdzZajetoscParkinguKoniec = null;
+                Date zajetoscParkinguStart = null;
+                Date zajetoscParkinguKoniec = null;
                 try {
-                    sprawdzZajetoscParkinguStart = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-"+ miesiac + "-" + dzien + " " + "00:00:00");
-                    sparwdzZajetoscParkinguKoniec = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-" + miesiac + "-" + dzien + " " + "23:59:00");
+                    zajetoscParkinguStart = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-"+ miesiac + "-" + dzien + " " + "00:00:00");
+                    zajetoscParkinguKoniec = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-" + miesiac + "-" + dzien + " " + "23:59:00");
+                    List<RezerwacjaEntity> wypiszStatus = parkingSerwis.listaZajetychRezerwacji(zajetoscParkinguStart, zajetoscParkinguKoniec);
+                    if (wypiszStatus == null) {
+                        System.out.println("Tego dnia nie wykonano jeszcze żanych rezerwacji");
+
+
+                    } else {
+                        System.out.println("Rezerwacje wykonane tego dnia " + wypiszStatus);
+                    }
 
                 } catch (ParseException e) {
                     e.printStackTrace();
                     System.out.println("Wprowadzono niepoprawne dane, wprowadz ponownie");
                     wybor = 1;
                 }
-                List<RezerwacjaEntity> wypiszStatus = parkingSerwis.wypiszStatus(sprawdzZajetoscParkinguStart, sparwdzZajetoscParkinguKoniec);
-                if (wypiszStatus == null) {
-                    System.out.println("Tego dnia nie wykonano jeszcze żanych rezerwacji");
-
-                } else {
-                    System.out.println("Rezerwacje wykonane tego dnia " + wypiszStatus);
-                }
-
-
             }
             if (wybor == 4) {
                 System.out.println("Program zakonczono");

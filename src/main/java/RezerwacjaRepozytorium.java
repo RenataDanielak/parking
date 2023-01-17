@@ -1,6 +1,4 @@
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.type.TimestampType;
 
@@ -60,7 +58,7 @@ public class RezerwacjaRepozytorium {
         return deletedRows;
     }
 
-    public List<RezerwacjaEntity> wypiszStatus (Date sprawdzZajetoscOd, Date sprawdzZajetoscDo){
+    public List<RezerwacjaEntity> listaRezerwacji(Date zajetoscOd, Date zajetoscDo){
 
         //Pobranie sesji
         Session session = DBConnection.getFactory().getCurrentSession();
@@ -68,9 +66,9 @@ public class RezerwacjaRepozytorium {
         //rozpoczenie transakcji
         session.beginTransaction();
 
-        NativeQuery query = session.createNativeQuery("select * from rezerwacja where od > :sprawdzZajetoscOd and do < :sprawdzZajetoscDo");
-        query.setParameter("sprawdzZajetoscOd", sprawdzZajetoscOd, TimestampType.INSTANCE);
-        query.setParameter("sprawdzZajetoscDo", sprawdzZajetoscDo, TimestampType.INSTANCE);
+        NativeQuery query = session.createNativeQuery("select * from rezerwacja where od > :zajetoscOd and do < :zajetoscDo");
+        query.setParameter("zajetoscOd", zajetoscOd, TimestampType.INSTANCE);
+        query.setParameter("zajetoscDo", zajetoscDo, TimestampType.INSTANCE);
         query.addEntity(RezerwacjaEntity.class);
 
         List<RezerwacjaEntity> resultList = query.getResultList();

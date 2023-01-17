@@ -34,8 +34,8 @@ public class ParkingSerwis {
         return false;
     }
 
-    public List<RezerwacjaEntity> wypiszStatus (Date sprawdzZajetoscOd, Date sprawdzZajetoscDo){
-        List<RezerwacjaEntity> resultList = rezerwacjaRepozytorium.wypiszStatus(sprawdzZajetoscOd, sprawdzZajetoscDo);
+    public List<RezerwacjaEntity> listaZajetychRezerwacji(Date zajetoscOd, Date zajetoscDo){
+        List<RezerwacjaEntity> resultList = rezerwacjaRepozytorium.listaRezerwacji(zajetoscOd, zajetoscDo);
         return resultList;
     }
 }
