@@ -6,13 +6,6 @@ import java.util.*;
 
 public class Main {
 
-    //jak uzytkownik wybierze opcje numer 2 program zapyta go o imie to nalezy wyszukac wszystkie rezerwacje z przyszlosci i je usunac przy wyszukiwaniu rezerwacji program
-    // powinien ignorowac wielkosc liter
-    //https://www.w3schools.com/sql/func_mysql_lower.asp
-    //Date date = new Date();
-    //main- serwis- repozytorium
-
-
     public static void main(String[] args){
 
 
@@ -102,47 +95,5 @@ public class Main {
                 System.out.println("Program zakonczono");
             }
         }
-
-
-
-
-        //Zrpbic interfejs uzytkownika jak w Parking09, dla opcji innych niz zarezerwuj niech wyswietla "Fukcja niedostepna",
-        //dla zarezerwuj niech pyta o dzien, miesiąc, goddzina poczatku rezerwacki, minuta poczatku rezerwacji. godzina konca, minuta konca i imie
-        // rok domyslnie bierzacy. Na koncu niech zwraca komunikat zarezerwowama miejscie X, lub brak miejsc.
-        // *Jesli uzytkownik wpisze niepoprawne wartosci dane, niech wyswietli komunikat i ponownie poprosi o dane
-
-//        MiejsceRepozytorium miejsceRepozytorium = new MiejsceRepozytorium();
-//        List<MiejsceEntity> result = miejsceRepozytorium.getAll();
-//
-//        System.out.println(result);
-//
-//        MiejsceEntity miejsce = result.get(0);
-//
-//        RezerwacjaEntity rezerwacja = new RezerwacjaEntity();
-//        rezerwacja.setUzytkownik("Lukasz");
-//
-//
-//        Date startDate = null;
-//        try {
-//            startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2023-01-02 14:15:00");
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//
-//        rezerwacja.setStart(startDate);
-//        rezerwacja.setKoniec(new Date());
-//        rezerwacja.setMiejsce(miejsce);
-//
-//        miejsce.getRezerwacje().add(rezerwacja);
-//        miejsceRepozytorium.mergeMiejsce(miejsce);
-//
-//        List<MiejsceEntity> result2 = miejsceRepozytorium.getAll();
-//        System.out.println(result2);
-
-
-
-
-
-
     }
 }

@@ -23,18 +23,4 @@ public class DBConnection {
         return factory;
     }
 
-//    public static void zbudujFactory(){
-//        //Stworzenie obiektu Configuration
-//        Configuration conf = new Configuration();
-//
-//        //Wczytanie pliku konfiguracyjnego
-//        conf.configure("hibernate.cfg.xml");
-//
-//        //Wczytanie adnotacji
-//        conf.addAnnotatedClass(MiejsceEntity.class);
-//        conf.addAnnotatedClass(RezerwacjaEntity.class);
-//
-//        factory  = conf.buildSessionFactory();
-//    }
-
 }

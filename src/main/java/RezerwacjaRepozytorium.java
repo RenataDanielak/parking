@@ -23,19 +23,6 @@ public class RezerwacjaRepozytorium {
         return rezerwacja.getId();
     }
 
-//    public void usuniecieZBazyDanych (RezerwacjaEntity rezerwacja){
-//        //Pobranie sesji
-//        Session session = DBConnection.getFactory().getCurrentSession();
-//
-//        //rozpoczenie transakcji
-//        session.beginTransaction();
-//
-//        session.delete(rezerwacja);
-//
-//        //zakonczenie transakcji
-//        session.getTransaction().commit();
-//    }
-
     public int usunieteRezerwacje(String imieRezerwujacego){
         Date date = new Date();
 
